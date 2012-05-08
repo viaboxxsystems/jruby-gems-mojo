@@ -1,0 +1,13 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>de.viaboxx</groupId>
+    <artifactId>jruby-gems-plugin-modules</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>Modules of jruby-gems-plugin</name>
+    <packaging>pom</packaging>
+    <modules>
+        <module>plugin</module>
+        <module>gem-loader</module>
+        <module>example</module>
+    </modules
+</project>

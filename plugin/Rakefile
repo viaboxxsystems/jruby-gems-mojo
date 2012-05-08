@@ -1,0 +1,39 @@
+namespace :package do
+
+  task :fetch_gems do
+    puts "Fetching all gems found in Gemfile"
+    sh "bundle install --deployment"
+  end
+
+  task :setup_directories do
+    sh "mkdir -p gems-in-jar/META-INF"
+  end
+
+  task :copy_gems => [:fetch_gems, :setup_directories] do
+    sh "cp -r vendor/bundle/jruby/1.8/gems/* gems-in-jar"
+  end
+
+  task :create_property_file => :copy_gems do
+    puts "Creating property file for gem discovery"
+    File.open("gems-in-jar/META-INF/gems", 'w') do |f|
+      Dir.entries("vendor/bundle/jruby/1.8/gems").each do |fileName|
+        match= /(.*)\-\d/.match(fileName)
+        puts "Adding gem: #{match[1]}" if match
+        f.write "#{match[1]}=#{fileName}\n" if match
+      end
+    end
+  end
+
+  task :create_jar => :create_property_file do
+    puts "Creating jar with gems."
+    `zip -r gems.jar gems-in-jar`
+  end
+end
+
+task :package => "package:create_jar" do end
+
+task :clean do
+  sh "rm -r gems-in-jar"
+end
+
+

@@ -1,0 +1,45 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>de.viaboxx</groupId>
+    <artifactId>gem-loader</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>Helper for loading bundled gems from a jar</name>
+    <parent>
+        <groupId>de.viaboxx.parents</groupId>
+        <artifactId>viaboxx-parent</artifactId>
+        <version>1</version>
+    </parent>
+    <dependencies>
+        <dependency>
+            <groupId>org.jruby</groupId>
+            <artifactId>jruby-complete</artifactId>
+            <version>1.6.7.2</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>deployment.dav</id>
+            <name>Viaboxx Snapshot Artifacts</name>
+            <url>${deployment-dav-url}</url>
+        </snapshotRepository>
+        <repository>
+            <id>internal.dav</id>
+            <name>Viaboxx Artifacts</name>
+            <url>${internal-dav-url}</url>
+        </repository>
+    </distributionManagement>
+</project>
