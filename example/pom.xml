@@ -5,6 +5,11 @@
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>JRuby Gems-in-jar plugin example</name>
+    <parent>
+        <groupId>de.viaboxx.parents</groupId>
+        <artifactId>viaboxx-parent</artifactId>
+        <version>1</version>
+    </parent>
     <dependencies>
         <dependency>
             <groupId>org.jruby</groupId>
