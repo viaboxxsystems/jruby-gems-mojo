@@ -4,14 +4,13 @@ import org.apache.commons.io.FileUtils;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.project.MavenProject;
 import org.jruby.embed.LocalContextScope;
 import org.jruby.embed.ScriptingContainer;
 
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,6 +31,21 @@ public class JRubyGemsMojo extends AbstractMojo {
      * @parameter expression="${project.build.directory}"
      */
     private File buildDirectory;
+
+    /**
+     * Directory containing the build files.
+     *
+     * @parameter expression="${project.base.directory}"
+     */
+    private File baseDirectory;
+
+    /**
+     * The maven project.
+     *
+     * @parameter expression="${project}"
+     * @readonly
+     */
+    private MavenProject project;
 
     private static FilenameFilter dirsOnlyFilter = new FilenameFilter() {
         @Override
@@ -55,7 +69,7 @@ public class JRubyGemsMojo extends AbstractMojo {
     }
 
     private void cleanup() throws IOException {
-        FileUtils.cleanDirectory(new File(buildDirectory,"bundled-gems"));
+        FileUtils.cleanDirectory(new File(buildDirectory, "bundled-gems"));
     }
 
     private void moveGems() throws IOException {
@@ -73,7 +87,7 @@ public class JRubyGemsMojo extends AbstractMojo {
     private void createGemSpec(File gemsSpec) throws IOException {
         Properties properties = createGemSpecProperties();
         gemsSpec.createNewFile();
-        properties.store(new FileWriter(gemsSpec), "");
+        properties.store(new FileWriter(gemsSpec), "Gems for " + project.getArtifact().toString());
     }
 
     private Properties createGemSpecProperties() {
@@ -106,6 +120,7 @@ public class JRubyGemsMojo extends AbstractMojo {
     private void fetchGems() throws IOException, MojoExecutionException {
         ScriptingContainer container = prepareRuntime();
         InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("install_gems.rb");
+        container.put("$gem_file_location", new File(this.project.getFile().getParentFile(), "Gemfile").getAbsolutePath());
         container.runScriptlet(resourceAsStream, "install_gems.rb");
     }
 }
