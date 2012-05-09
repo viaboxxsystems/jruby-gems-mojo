@@ -9,5 +9,5 @@
         <module>plugin</module>
         <module>gem-loader</module>
         <module>example</module>
-    </modules
+    </modules>
 </project>
