@@ -30,16 +30,4 @@
             </plugin>
         </plugins>
     </build>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>deployment.dav</id>
-            <name>Viaboxx Snapshot Artifacts</name>
-            <url>${deployment-dav-url}</url>
-        </snapshotRepository>
-        <repository>
-            <id>internal.dav</id>
-            <name>Viaboxx Artifacts</name>
-            <url>${internal-dav-url}</url>
-        </repository>
-    </distributionManagement>
 </project>
