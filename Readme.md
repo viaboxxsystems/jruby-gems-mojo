@@ -77,3 +77,13 @@ This is intended to be used by you when embedding ruby into a java project.
 jruby-gems-plugin-example
 -------------------------
 An example project showing how to use the above projects in your own java projects.
+
+How gems are bundled
+====================
+Bundled gems are put into `target/gems`. Additionally, a properties file is put into
+`target/gems-in-jar/gems-in-jar.properties` containing name and version of the bundled gems. The information found here
+is used to construct load paths by the gem-loader.
+
+It is possible to have more than one project in your classpath that uses bundled gems, but as the time of this writing,
+there is nothing in place to stop you putting multiple versions of the same gem into the load path. [see the todo file for details](todo.md)
+

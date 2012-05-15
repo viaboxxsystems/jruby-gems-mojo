@@ -9,6 +9,10 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ * Provides a convenient way to create a load path config suitable for a ScriptingContainer
+ * instance that is able to access gems packaged with jruby-gems-plugin.
+ */
 public class GemLoader {
 
     /**
@@ -24,6 +28,13 @@ public class GemLoader {
 
     }
 
+    /**
+     * Creates a list of paths needed for a ScriptingContainer to be able to access gems bundled using the
+     * jruby-dems-plugin maven plugin.
+     * @return A list of path strings pointing to bundled gem roots.
+     * @throws IOException If accessing a bundled gem fails despite it was mentioned in one of the
+     * <code>gems-in-jar/gems-in-jar.properties</code> files found in the classpath.
+     */
     public List<String> loadPaths() throws IOException {
         List<String> loadPaths = new ArrayList<String>();
         Enumeration<URL> gemDefinitions = classLoader().getResources("gems-in-jar/gems-in-jar.properties");
