@@ -13,6 +13,5 @@ Open Source
 -----------
 
 - find an icon
-- put on github
 - write a blog post
 - deploy to public maven repo
