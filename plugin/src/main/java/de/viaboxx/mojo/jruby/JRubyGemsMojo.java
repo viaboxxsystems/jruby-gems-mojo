@@ -1,6 +1,7 @@
 package de.viaboxx.mojo.jruby;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -47,6 +48,15 @@ public class JRubyGemsMojo extends AbstractMojo {
      */
     private MavenProject project;
 
+    /**
+     * The Maven Session.
+     *
+     * @parameter expression="${session}"
+     * @required
+     * @readonly
+     */
+    protected MavenSession session;
+
     private static FilenameFilter dirsOnlyFilter = new FilenameFilter() {
         @Override
         public boolean accept(File file, String s) {
@@ -55,6 +65,10 @@ public class JRubyGemsMojo extends AbstractMojo {
     };
 
     public void execute() throws MojoExecutionException, MojoFailureException {
+        if (session.getSettings().isOffline()) {
+            getLog().warn("Executed in offline mode => No Gems will be fetched!");
+            return;
+        }
         try {
             getLog().info("Downloading gems found in Gemfile...");
             fetchGems();
