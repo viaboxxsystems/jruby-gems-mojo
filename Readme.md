@@ -50,7 +50,7 @@ We have to tell maven where to find ruby scripts and gems:
         </resource>
     </resources>
 
-Technically, adding `src/main/ruby` is not needed, but i regard putting ruby source 
+Technically, adding `src/main/ruby` is not needed, but we regard putting ruby source 
 code into src/main/ruby as good practice.
 
 Next is adding a Gemfile to your project, add needed dependencies and run `bundle install` to 
@@ -72,7 +72,7 @@ gem-loader
 ----------
 Small helper library that shows how to get hold of a ScriptingContainer capable of
 using packaged gems.
-This is intended to be used by you when embedding ruby into a java project.
+This is intended for use when embedding ruby into a java project.
 
 jruby-gems-plugin-example
 -------------------------
