@@ -87,3 +87,19 @@ is used to construct load paths by the gem-loader.
 It is possible to have more than one project in your classpath that uses bundled gems, but as the time of this writing,
 there is nothing in place to stop you putting multiple versions of the same gem into the load path. [see the todo file for details](todo.md)
 
+Known limitations
+=================
+
+Bundler groups
+--------------
+
+There are some limitations what can be done within the Gemfile:
+* there is no support for selection groups yet
+
+Multiple jars with gem dependencies within classpath
+----------------------------------------------------
+By now, we assume that we have only one jar with gem dependencies within the classpath. If there is more 
+than one jar with gem dependencies decalred, all jruby script configurations get teh sum of all declared,
+wich is very likely not what you want. Adding a namespacing-lie feature for this would be possible, but I 
+would prefer to to this only if really needed. Add an issue if you need this so we can discuss possible 
+solutions so we can add this feature.

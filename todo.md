@@ -8,6 +8,8 @@ Technical
 - respect offline mode
 - check binding to lifecycle (generate-resources): which configuration is really needed in teh simplest case?
 - consider using namespaces (maybe we shoud call them "gemsets" bc they roughly do what rvm's gemsets do)
+- handle [bundler groups](http://gembundler.com/groups.html) in some reasonable way
+- make running ruby-based tests with declared gems using `mvn test`
 
 Open Source
 -----------
