@@ -127,6 +127,7 @@ public class JRubyGemsMojo extends AbstractMojo {
         URL bundler = getClass().getClassLoader().getResource(BUNDLER_GEM_PATH);
         if (bundler == null) throw new MojoExecutionException("Cannot find bundler gem at '" + BUNDLER_GEM_PATH + "'");
         loadPaths.add(bundler.getPath());
+        getLog().info("Using Bundler from " + bundler.getPath());
         container.setLoadPaths(loadPaths);
         return container;
     }
@@ -135,6 +136,7 @@ public class JRubyGemsMojo extends AbstractMojo {
         ScriptingContainer container = prepareRuntime();
         InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("install_gems.rb");
         container.put("$gem_file_location", new File(this.project.getFile().getParentFile(), "Gemfile").getAbsolutePath());
+        container.put("$base_dir", new File(this.project.getFile().getParentFile(), "target"));
         container.runScriptlet(resourceAsStream, "install_gems.rb");
     }
 }
