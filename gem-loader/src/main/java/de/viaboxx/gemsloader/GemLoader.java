@@ -25,12 +25,11 @@ public class GemLoader {
         List<String> loadPaths = loadPaths();
         config.setLoadPaths(loadPaths);
         return config;
-
     }
 
     /**
      * Creates a list of paths needed for a ScriptingContainer to be able to access gems bundled using the
-     * jruby-dems-plugin maven plugin.
+     * jruby-gems-plugin maven plugin.
      * @return A list of path strings pointing to bundled gem roots.
      * @throws IOException If accessing a bundled gem fails despite it was mentioned in one of the
      * <code>gems-in-jar/gems-in-jar.properties</code> files found in the classpath.

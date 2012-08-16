@@ -11,8 +11,11 @@ public class Main {
     }
 
     private void runApp() throws IOException {
+        // get a scriptin container to run our script within
         ScriptingContainer container = new ScriptingContainer();
+        // set the load paths to make sure gems from gemfile are found
         container.setLoadPaths(new GemLoader().loadPaths());
+        // run the script depending on the ruby gems
         container.runScriptlet(PathType.CLASSPATH, "hello_world.rb");
     }
 }
