@@ -6,13 +6,31 @@
     <name>Modules of jruby-gems-plugin</name>
     <packaging>pom</packaging>
     <parent>
-        <groupId>de.viaboxx.parents</groupId>
-        <artifactId>viaboxx-parent</artifactId>
-        <version>1</version>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
     </parent>
     <modules>
         <module>plugin</module>
         <module>gem-loader</module>
         <module>example</module>
     </modules>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <scm>
+        <connection>scm:git:git@github.com:viaboxxsystems/jruby-gems-mojo.git</connection>
+        <url>git@github.com:viaboxxsystems/jruby-gems-mojo.git</url>
+        <developerConnection>scm:git:git@github.com:viaboxxsystems/jruby-gems-mojo.git</developerConnection>
+    </scm>
 </project>
