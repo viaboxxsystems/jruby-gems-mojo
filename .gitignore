@@ -1,6 +1,7 @@
 .DS_Store
 .bundle
 .idea
+.rakeTasks
 target
 *.iml
 hello.pdf
