@@ -103,3 +103,8 @@ than one jar with gem dependencies decalred, all jruby script configurations get
 wich is very likely not what you want. Adding a namespacing-lie feature for this would be possible, but I 
 would prefer to to this only if really needed. Add an issue if you need this so we can discuss possible 
 solutions so we can add this feature.
+
+Build Status
+============
+
+[![Build Status](https://secure.travis-ci.org/viaboxxsystems/jruby-gems-mojo.png)](http://travis-ci.org/viaboxxsystems/jruby-gems-mojo])
