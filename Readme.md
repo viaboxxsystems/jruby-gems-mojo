@@ -85,7 +85,7 @@ Bundled gems are put into `target/gems`. Additionally, a properties file is put 
 is used to construct load paths by the gem-loader.
 
 It is possible to have more than one project in your classpath that uses bundled gems, but as the time of this writing,
-there is nothing in place to stop you putting multiple versions of the same gem into the load path. [see the todo file for details](blob/master/todo.md)
+there is nothing in place to stop you putting multiple versions of the same gem into the load path. [see the todo file for details](/todo.md)
 
 Known limitations
 =================
