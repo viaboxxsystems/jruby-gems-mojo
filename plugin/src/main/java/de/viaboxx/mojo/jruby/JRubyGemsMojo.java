@@ -26,6 +26,7 @@ public class JRubyGemsMojo extends AbstractMojo {
 
 
     public static final String BUNDLER_GEM_PATH = "gems/bundler-1.1.3/lib";
+
     /**
      * Directory containing the build files.
      *
@@ -59,8 +60,8 @@ public class JRubyGemsMojo extends AbstractMojo {
 
     private static FilenameFilter dirsOnlyFilter = new FilenameFilter() {
         @Override
-        public boolean accept(File file, String s) {
-            return file.isDirectory();
+        public boolean accept(File file, String name) {
+            return file.isDirectory() && !name.startsWith(".");
         }
     };
 
@@ -89,6 +90,9 @@ public class JRubyGemsMojo extends AbstractMojo {
     private void moveGems() throws IOException {
         File gemsInJar = new File(buildDirectory, "bundled-gems/jruby/1.8/gems");
         FileUtils.copyDirectoryToDirectory(gemsInJar, new File(buildDirectory, "generated-resources"));
+        File gitBasedGemsInJar = new File(buildDirectory, "bundled-gems/jruby/1.8/bundler/gems");
+        if (gitBasedGemsInJar.exists())
+            FileUtils.copyDirectoryToDirectory(gitBasedGemsInJar, new File(buildDirectory, "generated-resources"));
     }
 
     private void prepareGems() throws IOException {
@@ -115,7 +119,7 @@ public class JRubyGemsMojo extends AbstractMojo {
     }
 
     private String bundleName(String gemDir) {
-        Pattern gemName = Pattern.compile("(.*)\\-\\d.*");
+        Pattern gemName = Pattern.compile("([^\\-\\.]*).*");
         Matcher matcher = gemName.matcher(gemDir);
         matcher.matches();
         return matcher.group(1);
