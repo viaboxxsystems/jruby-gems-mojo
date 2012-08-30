@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.viaboxx</groupId>
     <artifactId>jruby-gems-plugin-modules</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
     <name>Modules of jruby-gems-plugin</name>
     <packaging>pom</packaging>
     <parent>
