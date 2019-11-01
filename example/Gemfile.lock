@@ -2,9 +2,11 @@ GEM
   remote: http://rubygems.org/
   specs:
     Ascii85 (1.0.1)
+    concurrent-ruby (1.1.5)
     faker (1.0.1)
       i18n (~> 0.4)
-    i18n (0.6.0)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
     pdf-reader (1.1.0)
       Ascii85 (~> 1.0.0)
       ruby-rc4
@@ -16,6 +18,7 @@ GEM
 
 PLATFORMS
   java
+  ruby
 
 DEPENDENCIES
   faker
